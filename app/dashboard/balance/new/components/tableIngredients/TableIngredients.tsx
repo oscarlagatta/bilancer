@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -12,8 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useState, useEffect, useCallback } from "react";
-import type { Ingredient } from "@/types/ingredient";
+import { useState, useEffect } from "react";
+import { Ingredient } from "@/types/ingredient";
 import { DrawerPage } from "../drawer/drawer";
 import {
   Accordion,
@@ -21,7 +19,7 @@ import {
   AccordionItem,
 } from "@/components/ui/accordion";
 import { ChevronDown, ChevronUp, Trash2 } from "lucide-react";
-import type { TotaliBalancer } from "@/types/recipe";
+import { TotaliBalancer } from "@/types/recipe";
 
 interface TableIngredientsProps {
   ingredients: Ingredient[];
@@ -81,21 +79,19 @@ export function TableIngredients({
     setIngredientsRecipe(updatedIngredients);
     setTotalWeightIngredients(totalWeight);
 
-    // Remove this section from handleWeightChange
-    // setTotaliBalancer((prev) => ({
-    //   ...prev,
-    //   percentualeTotaleZuccheri: totalPercentualeZuccheri,
-    //   percentualeTotaleGrassi: totalPercentualeGrassi,
-    //   percentualeTotaleSLNG: totalPercentualeSLNG,
-    //   percentualeTotaleNeutriOBasi: totalNeutroOrBase,
-    //   percentualeTotaleAltriSolidi: totalPercentualeAltriSolidi,
-    //   percentualeTotaleSolidiTotali: totalPercentualeSolidiTotali,
-    //   percentualeTotalePOD: totalPercentualePOD,
-    //   percentualeTotalePAC: totalPercentualePAC,
-    // }));
+    setTotaliBalancer((prev) => ({
+      ...prev,
+      percentualeTotaleZuccheri: totalPercentualeZuccheri,
+      percentualeTotaleGrassi: totalPercentualeGrassi,
+      percentualeTotaleSLNG: totalPercentualeSLNG,
+      percentualeTotaleNeutriOBasi: totalNeutroOrBase,
+      percentualeTotaleAltriSolidi: totalPercentualeAltriSolidi,
+      percentualeTotaleSolidiTotali: totalPercentualeSolidiTotali,
+      percentualeTotalePOD: totalPercentualePOD,
+      percentualeTotalePAC: totalPercentualePAC,
+    }));
 
-    // Remove this line
-    // dataSendFromTableIngredients(totaliBalancer);
+    dataSendFromTableIngredients(totaliBalancer);
   };
 
   const toggleAccordion = (itemId: number) => {
@@ -198,38 +194,6 @@ export function TableIngredients({
   ) => {
     return percentuale < min || percentuale > max;
   };
-
-  // Use useCallback to memoize the function
-  const updateTotaliBalancer = useCallback(() => {
-    const newTotaliBalancer = {
-      percentualeTotaleZuccheri: totalPercentualeZuccheri,
-      percentualeTotaleGrassi: totalPercentualeGrassi,
-      percentualeTotaleSLNG: totalPercentualeSLNG,
-      percentualeTotaleNeutriOBasi: totalNeutroOrBase,
-      percentualeTotaleAltriSolidi: totalPercentualeAltriSolidi,
-      percentualeTotaleSolidiTotali: totalPercentualeSolidiTotali,
-      percentualeTotalePOD: totalPercentualePOD,
-      percentualeTotalePAC: totalPercentualePAC,
-    };
-    setTotaliBalancer(newTotaliBalancer);
-    dataSendFromTableIngredients(newTotaliBalancer);
-  }, [
-    totalPercentualeZuccheri,
-    totalPercentualeGrassi,
-    totalPercentualeSLNG,
-    totalNeutroOrBase,
-    totalPercentualeAltriSolidi,
-    totalPercentualeSolidiTotali,
-    totalPercentualePOD,
-    totalPercentualePAC,
-    dataSendFromTableIngredients,
-  ]);
-
-  // Use useEffect to call updateTotaliBalancer when relevant values change
-  useEffect(() => {
-    updateTotaliBalancer();
-  }, [updateTotaliBalancer]);
-
   return (
     <div className="flex">
       {/* {JSON.stringify(totaliBalancer)} */}
@@ -259,7 +223,7 @@ export function TableIngredients({
             </TableHeader>
             <TableBody>
               {ingredientsRecipe.map((i: Ingredient, index) => (
-                <React.Fragment key={index}>
+                <>
                   <TableRow
                     key={index}
                     // onClick={() => toggleAccordion(index)}
@@ -320,7 +284,7 @@ export function TableIngredients({
                       />
                     </TableCell>
                   </TableRow>
-                  <TableRow key={`accordion-${index}`}>
+                  <TableRow>
                     <TableCell colSpan={5} className="p-0">
                       <Accordion
                         type="single"
@@ -379,7 +343,7 @@ export function TableIngredients({
                       </Accordion>
                     </TableCell>
                   </TableRow>
-                </React.Fragment>
+                </>
               ))}
             </TableBody>
             <TableFooter>

@@ -57,6 +57,7 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Recipe, TotaliBalancer } from "@/types/recipe";
 import { categoryRecipeDB } from "@/DATA/categoryRecipe";
 import { Balancer } from "./components/balancer/balancer";
+import { BalancerChart } from "./components/balancer/balancerChart";
 
 export default function GelatoCalculator2() {
   const [pesoGelato, setPesoGelato] = useState<number>(1000);
@@ -117,10 +118,49 @@ export default function GelatoCalculator2() {
     console.log(recipe);
   };
 
+  // PROVA PASSAGGIO DATI
+  const chartData = {
+    Zuccheri: 18,
+    Grassi: 9,
+    SLNG: 8.5,
+    "Altri Solidi": 3,
+    "Neutri & Basi": 6,
+    "Solidi Totali": 22,
+    POD: 18,
+    PAC: 28,
+    Frutta: 25,
+    Alcolici: 1.5,
+  };
+
+  const thresholds = {
+    percentualeMinZuccheri: 16,
+    percentualeMaxZuccheri: 22,
+    percentualeMinGrassi: 5,
+    percentualeMaxGrassi: 12,
+    percentualeMinSLNG: 7.5,
+    percentualeMaxSLNG: 11.5,
+    percentualeMinAltriSolidi: 0,
+    percentualeMaxAltriSolidi: 5,
+    percentualeMinNeutriBasi: 5,
+    percentualeMaxNeutriBasi: 10,
+    percentualeMinSolidiTotali: 15,
+    percentualeMaxSolidiTotali: 25,
+    percentualeMinPOD: 16,
+    percentualeMaxPOD: 20,
+    percentualeMinPAC: 26,
+    percentualeMaxPAC: 31,
+    percentualeMinFrutta: 20,
+    percentualeMaxFrutta: 40,
+    percentualeMinAlcolici: 1,
+    percentualeMaxAlcolici: 2,
+  };
+
+  // FINE
+
   return (
     <div className="flex flex-col items-center">
-      <div className="flex flex-col items-center mx-auto md:order-1 md:flex-row md: justify-center">
-        <Card className="flex justify-start h-[260px] w-[350px] m-4 flex-col shadow-lg">
+      <div className="">
+        <Card className="">
           <CardTitle className="p-2 pl-5">
             <h1 className="text-xl ">Ricetta Gelato</h1>
           </CardTitle>
@@ -162,11 +202,12 @@ export default function GelatoCalculator2() {
             </div>
           </CardContent>
         </Card>
-        <div className="flex md:order-2 ">
-          <Balancer totali={totaliBalancer} />
+        <div className="">
+          {/* <Balancer totali={totaliBalancer} /> */}
+          <BalancerChart chartData={chartData} thresholds={thresholds} />
         </div>
       </div>
-      <div className="md:order-3">
+      <div className="">
         <TableIngredients
           ingredients={ingredients}
           dataSendFromTableIngrediants={handleUpdateBalancer}
