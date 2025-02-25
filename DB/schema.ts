@@ -1,9 +1,40 @@
 import { integer, pgTable, text, decimal, date } from "drizzle-orm/pg-core";
 
 // New table for ice cream categories
+
 export const iceCreamCategories = pgTable("ice_cream_categories", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: text().notNull().unique(),
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  name: text("name").notNull().unique(),
+  // Sugars (percentage)
+  sugarsMin: decimal("sugars_min", { precision: 5, scale: 2 }).notNull(),
+  sugarsMax: decimal("sugars_max", { precision: 5, scale: 2 }).notNull(),
+  // Fats (percentage)
+  fatsMin: decimal("fats_min", { precision: 5, scale: 2 }).notNull(),
+  fatsMax: decimal("fats_max", { precision: 5, scale: 2 }).notNull(),
+  // MSNF (Milk Solids Non-Fat) (percentage)
+  msnfMin: decimal("msnf_min", { precision: 5, scale: 2 }).notNull(),
+  msnfMax: decimal("msnf_max", { precision: 5, scale: 2 }).notNull(),
+  // Other Solids (percentage)
+  otherSolidsMin: decimal("other_solids_min", { precision: 5, scale: 2 }).notNull(),
+  otherSolidsMax: decimal("other_solids_max", { precision: 5, scale: 2 }).notNull(),
+  // Total Solids (percentage)
+  totalSolidsMin: decimal("total_solids_min", { precision: 5, scale: 2 }).notNull(),
+  totalSolidsMax: decimal("total_solids_max", { precision: 5, scale: 2 }).notNull(),
+  // POD (Proof of Delivery) (percentage)
+  podMin: decimal("pod_min", { precision: 5, scale: 2 }).notNull(),
+  podMax: decimal("pod_max", { precision: 5, scale: 2 }).notNull(),
+  // Fruit (percentage)
+  fruitMin: decimal("fruit_min", { precision: 5, scale: 2 }).notNull(),
+  fruitMax: decimal("fruit_max", { precision: 5, scale: 2 }).notNull(),
+  // Alcohol (percentage)
+  alcoholMin: decimal("alcohol_min", { precision: 5, scale: 2 }).notNull(),
+  alcoholMax: decimal("alcohol_max", { precision: 5, scale: 2 }).notNull(),
+  // Overrun (percentage)
+  overrunMin: decimal("overrun_min", { precision: 5, scale: 2 }).notNull(),
+  overrunMax: decimal("overrun_max", { precision: 5, scale: 2 }).notNull(),
+  // Ground Foods (percentage)
+  groundFoodsMin: decimal("ground_foods_min", { precision: 5, scale: 2 }).notNull(),
+  groundFoodsMax: decimal("ground_foods_max", { precision: 5, scale: 2 }).notNull(),
 });
 
 // New table for ingredient categories
@@ -13,26 +44,26 @@ export const ingredientCategories = pgTable("ingredient_categories", {
 });
 
 // Updated categoriesIceCream table (now just a reference table)
-export const categoriesIceCream = pgTable("categories_ice_cream", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  categoryId: integer("category_id")
-      .references(() => iceCreamCategories.id)
-      .notNull(),
-});
+// export const categoriesIceCream = pgTable("categories_ice_cream", {
+//   id: integer().primaryKey().generatedAlwaysAsIdentity(),
+//   categoryId: integer("category_id")
+//       .references(() => iceCreamCategories.id)
+//       .notNull(),
+// });
 
 // Updated categoriesIngredients table (now just a reference table)
-export const categoriesIngredients = pgTable("categories_ingredients", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  categoryId: integer("category_id")
-      .references(() => ingredientCategories.id)
-      .notNull(),
-});
+// export const categoriesIngredients = pgTable("categories_ingredients", {
+//   id: integer().primaryKey().generatedAlwaysAsIdentity(),
+//   categoryId: integer("category_id")
+//       .references(() => ingredientCategories.id)
+//       .notNull(),
+// });
 
 export const ingredients = pgTable("ingredients", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   userId: text("user_id").notNull(),
   categoryId: integer("category_id")
-      .references(() => categoriesIngredients.id)
+      .references(() => ingredientCategories.id)
       .notNull(),
   description: text("name_ingredient").notNull(),
   sugar: decimal("sugar", { precision: 5, scale: 2 }),
@@ -51,7 +82,7 @@ export const recipes = pgTable("recipes", {
   userId: text("user_id").notNull(),
   name: text().notNull(),
   categoryId: integer("category_id")
-      .references(() => categoriesIceCream.id)
+      .references(() => iceCreamCategories.id)
       .notNull(),
   recipeDate: date("recipe_date"),
 });
