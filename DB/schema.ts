@@ -1,4 +1,4 @@
-import { integer, pgTable, text, decimal, date } from "drizzle-orm/pg-core";
+import {integer, pgTable, text, decimal, date, boolean} from "drizzle-orm/pg-core";
 
 // New table for ice cream categories
 
@@ -54,6 +54,7 @@ export const ingredients = pgTable("ingredients", {
   fat: decimal("fat", { precision: 5, scale: 2 }),
   slng: decimal("slng", { precision: 5, scale: 2 }),
   altriSolidi: decimal("altri_solidi", { precision: 5, scale: 2 }),
+  bilanciaSuLiquidi: boolean("bilancia_su_liquidi"),
   pod: decimal("pod", { precision: 5, scale: 2 }),
   pac: decimal("pac", { precision: 5, scale: 2 }),
   minPercentage: decimal("min_percentage", { precision: 5, scale: 2 }),
