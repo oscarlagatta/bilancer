@@ -43,22 +43,6 @@ export const ingredientCategories = pgTable("ingredient_categories", {
   name: text().notNull().unique(),
 });
 
-// Updated categoriesIceCream table (now just a reference table)
-// export const categoriesIceCream = pgTable("categories_ice_cream", {
-//   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-//   categoryId: integer("category_id")
-//       .references(() => iceCreamCategories.id)
-//       .notNull(),
-// });
-
-// Updated categoriesIngredients table (now just a reference table)
-// export const categoriesIngredients = pgTable("categories_ingredients", {
-//   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-//   categoryId: integer("category_id")
-//       .references(() => ingredientCategories.id)
-//       .notNull(),
-// });
-
 export const ingredients = pgTable("ingredients", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   userId: text("user_id").notNull(),

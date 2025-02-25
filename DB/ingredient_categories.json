@@ -1,0 +1,78 @@
+[
+  {
+    "id": 1,
+    "name": "Bevande"
+  },
+  {
+    "id": 2,
+    "name": "Bevande Vegetali"
+  },
+  {
+    "id": 3,
+    "name": "Infusi"
+  },
+  {
+    "id": 4,
+    "name": "Olio & Aceto"
+  },
+  {
+    "id": 5,
+    "name": "Cioccolato"
+  },
+  {
+    "id": 6,
+    "name": "Alimenti Scatolati"
+  },
+  {
+    "id": 7,
+    "name": "Spezie"
+  },
+  {
+    "id": 8,
+    "name": "Alimenti in polvere"
+  },
+  {
+    "id": 9,
+    "name": "Frutta Secca"
+  },
+  {
+    "id": 10,
+    "name": "Creme & Paste"
+  },
+  {
+    "id": 11,
+    "name": "Latticini & Uova"
+  },
+  {
+    "id": 12,
+    "name": "Zuccheri"
+  },
+  {
+    "id": 13,
+    "name": "Neutri & Basi"
+  },
+  {
+    "id": 14,
+    "name": "Frutta"
+  },
+  {
+    "id": 15,
+    "name": "Verdura"
+  },
+  {
+    "id": 16,
+    "name": "Alcolici"
+  },
+  {
+    "id": 17,
+    "name": "Salse"
+  },
+  {
+    "id": 18,
+    "name": "Dolci"
+  },
+  {
+    "id": 19,
+    "name": "Personali"
+  }
+]
