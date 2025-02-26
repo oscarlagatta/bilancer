@@ -127,7 +127,7 @@ async function seed() {
       groundFoodsMax: "10.00",
     },
     {
-      name: "Custom 1",
+      name: "Personale 1",
       sugarsMin: "30.00",
       sugarsMax: "50.00",
       fatsMin: "0.00",
@@ -199,6 +199,10 @@ async function seed() {
         { name: "Alcolici" },
         { name: "Salse" },
         { name: "Dolci" },
+        { name: "Additivi Alimentari" },
+        { name: "Gastronomico" },
+        { name: "Fibre Vegetali" },
+        { name: "Emulsionanti" },
         { name: "Personali" },
       ]);
 
