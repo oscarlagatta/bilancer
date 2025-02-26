@@ -20,7 +20,7 @@ export default function Home() {
           <SignedIn>
             <Button asChild size='lg'>
               <Link href='/dashboard'>
-
+                  Vai sul dashboard
               </Link>
             </Button>
           </SignedIn>
@@ -39,3 +39,5 @@ export default function Home() {
       </main>
   );
 }
+
+
