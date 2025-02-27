@@ -1,0 +1,26 @@
+import {z} from "zod";
+
+export const iceCreamCategorySchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    sugarsMin: z.number(),
+    sugarsMax: z.number(),
+    fatsMin: z.number(),
+    fatsMax: z.number(),
+    podMin: z.number(),
+    podMax: z.number(),
+    alcoholMin: z.number(),
+    alcoholMax: z.number(),
+    overrunMin: z.number(),
+    overrunMax: z.number(),
+    groundFoodsMin: z.number(),
+    groundFoodsMax: z.number(),
+    otherSolidsMin: z.number(),
+    otherSolidsMax: z.number(),
+    totalSolidsMin: z.number(),
+    totalSolidsMax: z.number(),
+    msnfMin: z.number(),
+    msnfMax: z.number(),
+    fruitMin: z.number(),
+    fruitMax: z.number(),
+})

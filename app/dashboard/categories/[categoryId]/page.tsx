@@ -1,6 +1,7 @@
 import { getCategory } from "@/DATA/getCategory";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import EditCategoryForm from "@/app/dashboard/categories/[categoryId]/edit-category-form";
 
 export default async function ModificaCategoriePage({
   params,
@@ -26,8 +27,7 @@ export default async function ModificaCategoriePage({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {JSON.stringify(category, null, 2)}
-        {/*<EditCategoryForm category={category}  />*/}
+        <EditCategoryForm category={category}  />
       </CardContent>
     </Card>
   );

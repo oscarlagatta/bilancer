@@ -20,8 +20,8 @@ export type CategoryRecipe = {
   percentualeMaxAltriSolidi: number;
   percentualeMinPOD: number;
   percentualeMaxPOD: number;
-  percentualeMinPAC: number;
-  percentualeMaxPAC: number;
+  percentualeMinPAC?: number;
+  percentualeMaxPAC?: number;
   percentualeMinFrutta: number;
   percentualeMaxFrutta: number;
   percentualeMinAlcolici: number;
