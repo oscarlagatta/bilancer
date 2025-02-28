@@ -2,7 +2,7 @@ import {
   integer,
   pgTable,
   text,
-  decimal,
+  numeric,
   date,
   boolean,
 } from "drizzle-orm/pg-core";
@@ -13,53 +13,38 @@ export const iceCreamCategories = pgTable("ice_cream_categories", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   name: text("name").notNull().unique(),
   // Sugars (percentage)
-  sugarsMin: decimal("sugars_min", { precision: 5, scale: 2 }).notNull(),
-  sugarsMax: decimal("sugars_max", { precision: 5, scale: 2 }).notNull(),
+  sugarsMin: numeric("sugars_min").notNull(),
+  sugarsMax: numeric("sugars_max").notNull(),
   // Fats (percentage)
-  fatsMin: decimal("fats_min", { precision: 5, scale: 2 }).notNull(),
-  fatsMax: decimal("fats_max", { precision: 5, scale: 2 }).notNull(),
+  fatsMin: numeric("fats_min").notNull(),
+  fatsMax: numeric("fats_max").notNull(),
   // MSNF (Milk Solids Non-Fat) (percentage)
-  msnfMin: decimal("msnf_min", { precision: 5, scale: 2 }).notNull(),
-  msnfMax: decimal("msnf_max", { precision: 5, scale: 2 }).notNull(),
+  msnfMin: numeric("msnf_min").notNull(),
+  msnfMax: numeric("msnf_max").notNull(),
   // Other Solids (percentage)
-  otherSolidsMin: decimal("other_solids_min", {
-    precision: 5,
-    scale: 2,
-  }).notNull(),
-  otherSolidsMax: decimal("other_solids_max", {
-    precision: 5,
-    scale: 2,
-  }).notNull(),
+  otherSolidsMin: numeric("other_solids_min").notNull(),
+  otherSolidsMax: numeric("other_solids_max").notNull(),
   // Total Solids (percentage)
-  totalSolidsMin: decimal("total_solids_min", {
-    precision: 5,
-    scale: 2,
-  }).notNull(),
-  totalSolidsMax: decimal("total_solids_max", {
-    precision: 5,
-    scale: 2,
-  }).notNull(),
-  // POD (Proof of Delivery) (percentage)
-  podMin: decimal("pod_min", { precision: 5, scale: 2 }).notNull(),
-  podMax: decimal("pod_max", { precision: 5, scale: 2 }).notNull(),
+  totalSolidsMin: numeric("total_solids_min").notNull(),
+  totalSolidsMax: numeric("total_solids_max").notNull(),
+  // POD (Potere dolcificante) (percentage)
+  podMin: numeric("pod_min").notNull(),
+  podMax: numeric("pod_max").notNull(),
+  // PAC (Potere anti-congelante) (percentage)
+  pacMin: numeric("pac_min").notNull(),
+  pacMax: numeric("pac_max").notNull(),
   // Fruit (percentage)
-  fruitMin: decimal("fruit_min", { precision: 5, scale: 2 }).notNull(),
-  fruitMax: decimal("fruit_max", { precision: 5, scale: 2 }).notNull(),
+  fruitMin: numeric("fruit_min").notNull(),
+  fruitMax: numeric("fruit_max").notNull(),
   // Alcohol (percentage)
-  alcoholMin: decimal("alcohol_min", { precision: 5, scale: 2 }).notNull(),
-  alcoholMax: decimal("alcohol_max", { precision: 5, scale: 2 }).notNull(),
+  alcoholMin: numeric("alcohol_min").notNull(),
+  alcoholMax: numeric("alcohol_max").notNull(),
   // Overrun (percentage)
-  overrunMin: decimal("overrun_min", { precision: 5, scale: 2 }).notNull(),
-  overrunMax: decimal("overrun_max", { precision: 5, scale: 2 }).notNull(),
+  overrunMin: numeric("overrun_min").notNull(),
+  overrunMax: numeric("overrun_max").notNull(),
   // Ground Foods (percentage)
-  groundFoodsMin: decimal("ground_foods_min", {
-    precision: 5,
-    scale: 2,
-  }).notNull(),
-  groundFoodsMax: decimal("ground_foods_max", {
-    precision: 5,
-    scale: 2,
-  }).notNull(),
+  groundFoodsMin: numeric("ground_foods_min").notNull(),
+  groundFoodsMax: numeric("ground_foods_max").notNull(),
 });
 
 // New table for ingredient categories
@@ -75,16 +60,16 @@ export const ingredients = pgTable("ingredients", {
     .references(() => ingredientCategories.id)
     .notNull(),
   description: text("name_ingredient").notNull(),
-  sugar: decimal("sugar", { precision: 5, scale: 2 }),
-  fat: decimal("fat", { precision: 5, scale: 2 }),
-  slng: decimal("slng", { precision: 5, scale: 2 }),
-  altriSolidi: decimal("altri_solidi", { precision: 5, scale: 2 }),
+  sugar: numeric("sugar"),
+  fat: numeric("fat"),
+  slng: numeric("slng"),
+  altriSolidi: numeric("altri_solidi"),
   bilanciaSuLiquidi: boolean("bilancia_su_liquidi"),
-  pod: decimal("pod", { precision: 8, scale: 2 }),
-  pac: decimal("pac", { precision: 8, scale: 2 }),
-  minPercentage: decimal("min_percentage", { precision: 5, scale: 2 }),
-  maxPercentage: decimal("max_percentage", { precision: 5, scale: 2 }),
-  foodCostForKg: decimal("food_cost_for_kg", { precision: 5, scale: 2 }),
+  pod: numeric("pod", { precision: 8, scale: 2 }),
+  pac: numeric("pac", { precision: 8, scale: 2 }),
+  minPercentage: numeric("min_percentage"),
+  maxPercentage: numeric("max_percentage"),
+  foodCostForKg: numeric("food_cost_for_kg"),
 });
 
 export const recipes = pgTable("recipes", {
@@ -105,5 +90,5 @@ export const recipeIngredients = pgTable("recipe_ingredients", {
   ingredientId: integer("ingredient_id")
     .references(() => ingredients.id)
     .notNull(),
-  percentage: decimal("percentage", { precision: 5, scale: 2 }).notNull(),
+  percentage: numeric("percentage").notNull(),
 });

@@ -27,7 +27,7 @@ export default async function ModificaCategoriePage({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <EditCategoryForm category={category}  />
+        <EditCategoryForm category={category} />
       </CardContent>
     </Card>
   );

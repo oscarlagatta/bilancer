@@ -696,7 +696,7 @@ async function seedStabilizers() {
 
 seedStabilizers();
 
-async function seedIngredientsCategory1() {
+async function seedIngredientsCategoryAlimenti() {
   const ingredientsData = [
     {
       userId: "default",
@@ -1315,7 +1315,7 @@ async function seedIngredientsCategory1() {
     },
     {
       userId: "default",
-      categoryId: 24,
+      categoryId: 22,
       description: "Lecitina di soia",
       sugar: "0.00",
       fat: "0.00",
@@ -1932,10 +1932,10 @@ async function seedIngredientsCategory1() {
 
   try {
     await db.insert(ingredients).values(ingredientsData);
-    console.log("Ingredients for category 1 seeded successfully");
+    console.log("Ingredients for category Alimenti seeded successfully");
   } catch (error) {
-    console.error("Error seeding ingredients for category 1:", error);
+    console.error("Error seeding ingredients for category Alimenti:", error);
   }
 }
 
-seedIngredientsCategory1();
+seedIngredientsCategoryAlimenti();
