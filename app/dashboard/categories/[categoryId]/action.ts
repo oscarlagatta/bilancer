@@ -1,38 +1,36 @@
-"use server";
+"use server"
 
-
-import {IceCreamCategory} from "@/types/icecream-category";
-import {auth} from "@clerk/nextjs/server";
-import {iceCreamCategorySchema} from "@/validation/icecream-category-schema";
-import {db} from "@/DB";
-import {iceCreamCategories} from "@/DB/schema";
-import {and, eq} from "drizzle-orm";
-
-
+import type { IceCreamCategory } from "@/types/icecream-category"
+import { auth } from "@clerk/nextjs/server"
+import { iceCreamCategorySchema } from "@/validation/icecream-category-schema"
+import { db } from "@/DB"
+import { iceCreamCategories } from "@/DB/schema"
+import { and, eq } from "drizzle-orm"
 
 export async function updateCategory(data: IceCreamCategory) {
-    const { userId } = await auth();
+    const { userId } = await auth()
 
     if (!userId) {
         return {
             error: true,
             message: "Unauthorized",
-        };
+        }
     }
 
     // Validate data
-    const validation = iceCreamCategorySchema.safeParse(data);
+    const validation = iceCreamCategorySchema.safeParse(data)
     if (!validation.success) {
         return {
             error: true,
             message: validation.error.issues[0].message,
-        };
+        }
     }
-    const validData = validation.data;
+    const validData = validation.data
 
     // Update category in the database
     try {
-        await db.update(iceCreamCategories)
+        await db
+            .update(iceCreamCategories)
             .set({
                 name: validData.name,
                 sugarsMin: validData.sugarsMin.toString(),
@@ -47,6 +45,8 @@ export async function updateCategory(data: IceCreamCategory) {
                 totalSolidsMax: validData.totalSolidsMax.toString(),
                 podMin: validData.podMin.toString(),
                 podMax: validData.podMax.toString(),
+                pacMin: validData.pacMin.toString(),
+                pacMax: validData.pacMax.toString(),
                 fruitMin: validData.fruitMin.toString(),
                 fruitMax: validData.fruitMax.toString(),
                 alcoholMin: validData.alcoholMin.toString(),
@@ -56,42 +56,34 @@ export async function updateCategory(data: IceCreamCategory) {
                 groundFoodsMin: validData.groundFoodsMin.toString(),
                 groundFoodsMax: validData.groundFoodsMax.toString(),
             })
-            .where(
-                and(
-                    eq(iceCreamCategories.id, validData.id),
-                )
-            );
+            .where(and(eq(iceCreamCategories.id, validData.id)))
 
         return {
             error: false,
             message: "Category updated successfully",
-        };
+        }
     } catch (error) {
         return {
             error: true,
             message: "Database error: " + formatErrorMessage(error),
-        };
+        }
     }
 }
 
 export async function deleteCategory(categoryId: number) {
-    const {userId} = await auth();
+    const { userId } = await auth()
 
     if (!userId) {
         return {
             error: true,
-            message: "Unauthorized"
+            message: "Unauthorized",
         }
     }
 
-    await db.delete(iceCreamCategories).where(
-        and(
-            eq(iceCreamCategories.id, categoryId),
-        )
-    );
+    await db.delete(iceCreamCategories).where(and(eq(iceCreamCategories.id, categoryId)))
 }
-
 
 function formatErrorMessage(error: unknown): string {
-    return "Database error: " + (error instanceof Error ? error.message : "Unknown error");
+    return "Database error: " + (error instanceof Error ? error.message : "Unknown error")
 }
+
