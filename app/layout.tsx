@@ -42,7 +42,8 @@ export default function RootLayout({
               <img src="./logo-ag.png" alt="logo-ag" className="h-16" />
             </Link>
             <div>
-              <Link href="/dashboard/categories">Categorie</Link>
+              <Link href="/dashboard/categories">Categorie Gelato</Link>
+              <Link href="/dashboard/ingredient-categories">Categorie Ingredienti</Link>
             </div>
             <div>
               <SignedOut>
