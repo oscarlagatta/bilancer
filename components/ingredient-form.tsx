@@ -106,6 +106,10 @@ export default function IngredientForm({
                         }}
                     />
 
+
+
+                </fieldset>
+                <fieldset disabled={form.formState.isSubmitting} className='grid grid-cols-4 mt-5 gap-5'>
                     <FormField
                         control={form.control}
                         name='sugar'
@@ -140,9 +144,6 @@ export default function IngredientForm({
                             )
                         }}
                     />
-
-                </fieldset>
-                <fieldset disabled={form.formState.isSubmitting} className='mt-5 flex flex-col gap-5'>
                     <FormField
                         control={form.control}
                         name='fat'
@@ -213,7 +214,7 @@ export default function IngredientForm({
                     />
 
                 </fieldset>
-                <fieldset disabled={form.formState.isSubmitting} className='mt-5 flex flex-col gap-5'>
+                <fieldset disabled={form.formState.isSubmitting} className='grid grid-cols-4 mt-5  gap-5'>
                     <FormField
                         control={form.control}
                         name="bilanciaSuLiquidi"
