@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-[400px] h-[calc(100vh-80px)] flex items-center justify-center bg-white relative">
+    <main className="min-h-[400px] h-[calc(100vh-96px)] flex items-center justify-center bg-white relative">
       <Image
         src="/cover.jpg"
         fill

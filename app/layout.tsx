@@ -35,7 +35,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${poppins.variable} antialiased`}>
           <header className="bg-primary text-white">
-            <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div className="mx-auto px-4 py-4 flex items-center justify-between">
               <Link
                 href="/"
                 className="font-bold text-2xl flex gap-1 items-center"
@@ -73,12 +73,8 @@ export default function RootLayout({
               </div>
             </div>
           </header>
-          <main className="w-full mx-auto px-4 py-8">{children}</main>
-          <footer className="bg-gray-100 mt-auto">
-            <div className="container mx-auto px-4 py-6 text-center text-gray-600">
-              © {new Date().getFullYear()} Arte Gelato. All rights reserved.
-            </div>
-          </footer>
+          <main className="w-full mx-auto">{children}</main>
+
         </body>
       </html>
     </ClerkProvider>

@@ -1,29 +1,39 @@
 import { columns } from "./components/columns";
 import { DataTable } from "@/app/dashboard/ingredients/components/data-table";
 import {
-  //   getIngredients,
-  getIngredientsWithCategory,
-  //   getIngredientsWithCategoryName,
-} from "@/DATA/getIngredients";
+    getIngredientsWithCategory,
+  } from "@/DATA/getIngredients";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 
-// Simulate a database read for tasks.
+import {Button} from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function IngredientsPage() {
-  //   const ingredients = await getIngredients();
+
   const ingredients = await getIngredientsWithCategory();
-  // const ingredientsWithCategories = await getIngredientsWithCategoryName();
+
   return (
     <>
       <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
-        <div className="flex items-center justify-between space-y-2">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">Ingredients</h2>
-            <p className="text-muted-foreground">
-              Questa &eacute; una lista degli ingredienti!
-            </p>
-          </div>
-        </div>
-        <DataTable data={ingredients} columns={columns} />
+          <Card>
+              <CardHeader>
+                  <CardTitle className="flex justify-between">
+                      <span className='text-3xl'>Ingredienti</span>
+                      <div className="flex gap-2">
+                          <Button asChild variant='outline'>
+                              <Link href='/dashboard/ingredients/new'>
+                                  Aggiungi un nuovo ingrediente
+                              </Link>
+                          </Button>
+                      </div>
+                  </CardTitle>
+                  <CardDescription>  Questa &eacute; una lista degli ingredienti!</CardDescription>
+              </CardHeader>
+              <CardContent>
+                  <DataTable data={ingredients} columns={columns} />
+              </CardContent>
+          </Card>
+
       </div>
     </>
   );

@@ -91,3 +91,8 @@ body {
   }
 }
 
+@layer components {
+  .vertical-center {
+    height: calc(100vh - 96px);
+  }
+}

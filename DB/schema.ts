@@ -79,6 +79,7 @@ export const ingredients = pgTable("ingredients", {
   foodCostForKg: numeric("food_cost_for_kg"),
 });
 
+
 export const ingredientsRelations = relations(ingredients, ({ one }) => ({
   categoryId: one(ingredientCategories, {
     fields: [ingredients.categoryId],
@@ -106,3 +107,5 @@ export const recipeIngredients = pgTable("recipe_ingredients", {
     .notNull(),
   percentage: numeric("percentage").notNull(),
 });
+
+

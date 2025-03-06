@@ -42,7 +42,6 @@ export const columns: ColumnDef<IngredientSelect>[] = [
         {row.getValue("categoryName")}
       </div>
     ),
-    enableSorting: false,
     enableHiding: false,
   },
   {
