@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import {
   integer,
   pgTable,
@@ -53,6 +54,12 @@ export const ingredientCategories = pgTable("ingredient_categories", {
   name: text().notNull().unique(),
 });
 
+export const categoriesRelations = relations(
+  ingredientCategories,
+  ({ many }) => ({
+    ingredients: many(ingredients),
+  })
+);
 export const ingredients = pgTable("ingredients", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   userId: text("user_id").notNull(),
@@ -71,6 +78,13 @@ export const ingredients = pgTable("ingredients", {
   maxPercentage: numeric("max_percentage"),
   foodCostForKg: numeric("food_cost_for_kg"),
 });
+
+export const ingredientsRelations = relations(ingredients, ({ one }) => ({
+  categoryId: one(ingredientCategories, {
+    fields: [ingredients.categoryId],
+    references: [ingredientCategories.id],
+  }),
+}));
 
 export const recipes = pgTable("recipes", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
