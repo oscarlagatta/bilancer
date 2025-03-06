@@ -39,6 +39,7 @@ export default function IngredientForm({
                                         }: Props) {
     const form = useForm<z.infer<typeof ingredientSchema>>({
         resolver: zodResolver(ingredientSchema),
+        mode: 'onBlur',
         defaultValues: {
             sugar: 0,
             fat: 0,
