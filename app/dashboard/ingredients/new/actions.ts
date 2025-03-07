@@ -10,7 +10,7 @@ export const createIngredient = async (data: {
     userId: string;
     categoryId: number;
     description: string;
-    bilanciaSuLiquidi: number;
+    bilanciaSuLiquidi: boolean;
     sugar?: number;
     fat?: number;
     slng?: number;
@@ -32,23 +32,22 @@ export const createIngredient = async (data: {
     if (!validation.success) {
         return { error: validation.error.format() }
     }
-
     const [ingredient] = await db.insert(ingredients).values({
         userId: userId,
         categoryId: data.categoryId,
         description: data.description,
         bilanciaSuLiquidi: data.bilanciaSuLiquidi,
         // Optional fields
-        sugar: data.sugar ?? 0,
-        fat: data.fat ?? 0,
-        slng: data.slng ?? 0,
-        altriSolidi: data.altriSolidi ?? 0,
-        pod: data.pod ?? 0,
-        pac: data.pac ?? 0,
-        minPercentage: data.minPercentage ?? 0,
-        maxPercentage: data.maxPercentage ?? 0,
-        foodCostForKg: data.foodCostForKg ?? 0,
-    }).returning()
+        sugar: (data.sugar ?? 0).toString(),
+        fat: (data.fat ?? 0).toString(),
+        slng: (data.slng ?? 0).toString(),
+        altriSolidi: (data.altriSolidi ?? 0).toString(),
+        pod: (data.pod ?? 0).toString(),
+        pac: (data.pac ?? 0).toString(),
+        minPercentage: (data.minPercentage ?? 0).toString(),
+        maxPercentage: (data.maxPercentage ?? 0).toString(),
+        foodCostForKg: (data.foodCostForKg ?? 0).toString(),
+    } as typeof ingredients.$inferInsert).returning()
 
     return {
         id: ingredient.id,
