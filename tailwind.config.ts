@@ -96,14 +96,15 @@ export default {
 				to: { height: 0 },
 			},
 			wobble: {
-				"0%, 100%": { transform: "rotate(0deg)" },
-				"25%": { transform: "rotate(-5deg)" },
-				"75%": { transform: "rotate(5deg)" },
+				'0%, 100%': { transform: 'translateX(-50%) rotate(0deg)' },
+				'25%': { transform: 'translateX(-52%) rotate(-1deg)' },
+				'75%': { transform: 'translateX(-48%) rotate(1deg)' },
 			},
 			drip: {
-				"0%": { transform: "translateY(0) scale(1)", opacity: "1" },
-				"100%": { transform: "translateY(20px) scale(0.5)", opacity: "0" },
-			},
+				'0%': { height: '0', opacity: '0' },
+				'50%': { height: '10px', opacity: '1' },
+				'100%': { height: '0', opacity: '0' },
+			}
 		},
 		animation: {
 			"accordion-down": "accordion-down 0.2s ease-out",
