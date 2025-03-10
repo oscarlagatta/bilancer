@@ -11,7 +11,7 @@ import type { IceCreamCategory } from "@/types/icecream-category"
 import type { z } from "zod"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
-import { Loader2 } from "lucide-react"
+import { Loader2 } from 'lucide-react'
 import { useState } from "react"
 
 type Props = {
@@ -94,16 +94,16 @@ export default function CategoryFormSheet({ isOpen, onOpenChange, category, onSu
 
     return (
         <Sheet open={isOpen} onOpenChange={onOpenChange}>
-            <SheetContent className="w-full sm:max-w-[800px] overflow-y-auto p-0">
+            <SheetContent className="w-full sm:max-w-[800px] overflow-y-auto p-4 sm:p-0">
                 <div className="bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 min-h-screen">
-                    <div className="w-full max-w-5xl mx-auto relative p-6">
+                    <div className="w-full max-w-5xl mx-auto relative p-4 sm:p-6">
                         {/* Decorative elements */}
                         <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
                         <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
 
-                        <SheetHeader className="text-center mb-6">
-                            <SheetTitle className="text-3xl font-bold tracking-tight">Modifica Categoria Gelato</SheetTitle>
-                            <p className="text-muted-foreground">Personalizza i parametri per la tua categoria di gelato</p>
+                        <SheetHeader className="text-center mb-4 sm:mb-6">
+                            <SheetTitle className="text-2xl sm:text-3xl font-bold tracking-tight">Modifica Categoria Gelato</SheetTitle>
+                            <p className="text-sm sm:text-base text-muted-foreground">Personalizza i parametri per la tua categoria di gelato</p>
                         </SheetHeader>
 
                         <Form {...form}>
@@ -118,7 +118,7 @@ export default function CategoryFormSheet({ isOpen, onOpenChange, category, onSu
                                                     <span className="text-xl">🍦</span> Nome Categoria
                                                 </FormLabel>
                                                 <FormControl>
-                                                    <Input {...field} className="text-lg p-6" placeholder="Inserisci un nome descrittivo" />
+                                                    <Input {...field} className="text-base sm:text-lg p-4 sm:p-6" placeholder="Inserisci un nome descrittivo" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -127,7 +127,7 @@ export default function CategoryFormSheet({ isOpen, onOpenChange, category, onSu
                                 </div>
 
                                 <Tabs defaultValue="base" className="w-full">
-                                    <TabsList className="grid grid-cols-3 w-full mb-6">
+                                    <TabsList className="grid grid-cols-3 w-full mb-6 overflow-x-auto text-xs sm:text-base">
                                         <TabsTrigger value="base">Componenti Base</TabsTrigger>
                                         <TabsTrigger value="technical">Proprietà Tecniche</TabsTrigger>
                                         <TabsTrigger value="additives">Additivi e Lavorazione</TabsTrigger>
@@ -137,21 +137,21 @@ export default function CategoryFormSheet({ isOpen, onOpenChange, category, onSu
                                         <TabsContent
                                             key={groupIndex}
                                             value={groupIndex === 0 ? "base" : groupIndex === 1 ? "technical" : "additives"}
-                                            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-border/50"
+                                            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 border border-border/50"
                                         >
                                             <h3 className="text-xl font-semibold mb-4">{group.title}</h3>
                                             <Separator className="mb-6" />
 
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div className="grid grid-cols-1 gap-4 sm:gap-6">
                                                 {group.fields.map((field, fieldIndex) => (
                                                     <div
                                                         key={fieldIndex}
-                                                        className={`border border-${field.color}-100 dark:border-${field.color}-900/30 rounded-lg p-4 transition-all hover:shadow-md`}
+                                                        className={`border border-${field.color}-100 dark:border-${field.color}-900/30 rounded-lg p-3 sm:p-4 transition-all hover:shadow-md`}
                                                     >
-                                                        <h4 className="font-medium text-lg flex items-center gap-2 mb-3">
+                                                        <h4 className="font-medium text-base sm:text-lg flex items-center gap-2 mb-2 sm:mb-3">
                                                             <span>{field.icon}</span> {field.title}
                                                         </h4>
-                                                        <div className="grid grid-cols-2 gap-4">
+                                                        <div className="grid grid-cols-2 gap-2 sm:gap-4">
                                                             <FormField
                                                                 control={form.control}
                                                                 name={field.min as keyof IceCreamCategory}
@@ -202,14 +202,14 @@ export default function CategoryFormSheet({ isOpen, onOpenChange, category, onSu
                                     ))}
                                 </Tabs>
 
-                                <div className="flex justify-end space-x-2 sticky bottom-0 bg-background pt-4 pb-2 pr-6">
-                                    <Button type="button" variant="outline" onClick={() => onOpenChange(false)} disabled={isSubmitting}>
+                                <div className="flex justify-end space-x-2 sticky bottom-0 bg-background pt-4 pb-2 px-4 sm:pr-6 sm:px-0">
+                                    <Button type="button" variant="outline" onClick={() => onOpenChange(false)} disabled={isSubmitting} className="text-xs sm:text-sm">
                                         Annulla
                                     </Button>
-                                    <Button type="submit" disabled={isSubmitting} className="bg-primary hover:bg-primary/90">
+                                    <Button type="submit" disabled={isSubmitting} className="bg-primary hover:bg-primary/90 text-xs sm:text-sm">
                                         {isSubmitting ? (
                                             <>
-                                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                <Loader2 className="mr-2 h-3 w-3 sm:h-4 sm:w-4 animate-spin" />
                                                 Salvataggio...
                                             </>
                                         ) : (
@@ -225,4 +225,3 @@ export default function CategoryFormSheet({ isOpen, onOpenChange, category, onSu
         </Sheet>
     )
 }
-
