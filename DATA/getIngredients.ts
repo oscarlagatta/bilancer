@@ -5,19 +5,7 @@ import { eq } from "drizzle-orm";
 export async function getIngredients() {
   return db.select().from(ingredients).orderBy(ingredients.categoryId);
 }
-export async function getIngredientsWithCategoryName() {
-  return db
-    .select({
-      ...ingredients,
-      categoryName: ingredientCategories.name,
-    })
-    .from(ingredients)
-    .innerJoin(
-      ingredientCategories,
-      eq(ingredients.categoryId, ingredientCategories.id)
-    )
-    .orderBy(ingredients.categoryId);
-}
+
 
 export async function getIngredientsWithCategory() {
   return db

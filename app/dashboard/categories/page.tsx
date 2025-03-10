@@ -7,14 +7,41 @@ import { PlusCircle, IceCream, ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import type { IceCreamCategory } from "@/types/icecream-category"
 
 export default async function CategoriesPage() {
-  const categories = await getCategories()
+  const categoriesData = await getCategories()
+
+  // Convert string values to numbers for each category
+  const categories = categoriesData.map((category) => ({
+    id: category.id,
+    name: category.name,
+    sugarsMin: Number(category.sugarsMin),
+    sugarsMax: Number(category.sugarsMax),
+    fatsMin: Number(category.fatsMin),
+    fatsMax: Number(category.fatsMax),
+    msnfMin: Number(category.msnfMin),
+    msnfMax: Number(category.msnfMax),
+    otherSolidsMin: Number(category.otherSolidsMin),
+    otherSolidsMax: Number(category.otherSolidsMax),
+    totalSolidsMin: Number(category.totalSolidsMin),
+    totalSolidsMax: Number(category.totalSolidsMax),
+    podMin: Number(category.podMin),
+    podMax: Number(category.podMax),
+    pacMin: Number(category.pacMin),
+    pacMax: Number(category.pacMax),
+    fruitMin: Number(category.fruitMin),
+    fruitMax: Number(category.fruitMax),
+    alcoholMin: Number(category.alcoholMin),
+    alcoholMax: Number(category.alcoholMax),
+    overrunMin: Number(category.overrunMin),
+    overrunMax: Number(category.overrunMax),
+    groundFoodsMin: Number(category.groundFoodsMin),
+    groundFoodsMax: Number(category.groundFoodsMax),
+  })) as IceCreamCategory[]
 
   // Function to get a color based on category id (deterministic)
-  const getCategoryColor = (id: number, name: string) => {
-
-    console.log(name);
+  const getCategoryColor = (id: number) => {
     // Use a set of predefined gradients
     const gradients = [
       "bg-gradient-to-r from-blue-500 to-purple-500",
@@ -114,7 +141,7 @@ export default async function CategoriesPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {categories.map((category) => (
                         <Card key={category.id} className="overflow-hidden group hover:shadow-lg transition-all duration-300">
-                          <div className={`h-3 ${getCategoryColor(category.id, category.name)}`} />
+                          <div className={`h-3 ${getCategoryColor(category.id)}`} />
                           <CardHeader className="pb-2">
                             <div className="flex justify-between items-start">
                               <div className="flex items-center gap-2">
@@ -123,7 +150,34 @@ export default async function CategoriesPage() {
                           </span>
                                 <CardTitle>{category.name}</CardTitle>
                               </div>
-                              <CategoryRowActions category={category} />
+                              <CategoryRowActions
+                                  category={{
+                                    id: category.id,
+                                    name: category.name,
+                                    sugarsMin: Number(category.sugarsMin),
+                                    sugarsMax: Number(category.sugarsMax),
+                                    fatsMin: Number(category.fatsMin),
+                                    fatsMax: Number(category.fatsMax),
+                                    msnfMin: Number(category.msnfMin),
+                                    msnfMax: Number(category.msnfMax),
+                                    otherSolidsMin: Number(category.otherSolidsMin),
+                                    otherSolidsMax: Number(category.otherSolidsMax),
+                                    totalSolidsMin: Number(category.totalSolidsMin),
+                                    totalSolidsMax: Number(category.totalSolidsMax),
+                                    podMin: Number(category.podMin),
+                                    podMax: Number(category.podMax),
+                                    pacMin: Number(category.pacMin),
+                                    pacMax: Number(category.pacMax),
+                                    fruitMin: Number(category.fruitMin),
+                                    fruitMax: Number(category.fruitMax),
+                                    alcoholMin: Number(category.alcoholMin),
+                                    alcoholMax: Number(category.alcoholMax),
+                                    overrunMin: Number(category.overrunMin),
+                                    overrunMax: Number(category.overrunMax),
+                                    groundFoodsMin: Number(category.groundFoodsMin),
+                                    groundFoodsMax: Number(category.groundFoodsMax),
+                                  }}
+                              />
                             </div>
                           </CardHeader>
                           <CardContent className="pb-6">
@@ -157,7 +211,7 @@ export default async function CategoriesPage() {
                                 </div>
                               </div>
 
-                              <ProgressBar label="Solidi Totali" value={Number(category.totalSolidsMax)} min={0} max={100} />
+                              <ProgressBar label="Solidi Totali" value={category.totalSolidsMax} min={0} max={100} />
 
                               <div className="pt-2">
                                 <Button
@@ -184,7 +238,7 @@ export default async function CategoriesPage() {
                   <div className="space-y-6">
                     {categories.map((category) => (
                         <Card key={category.id} className="overflow-hidden hover:shadow-md transition-all duration-300">
-                          <div className={`h-2 ${getCategoryColor(category.id, category.name)}`} />
+                          <div className={`h-2 ${getCategoryColor(category.id)}`} />
                           <CardHeader className="pb-2">
                             <div className="flex justify-between items-center">
                               <div className="flex items-center gap-2">
@@ -205,15 +259,10 @@ export default async function CategoriesPage() {
                                     Componenti Base
                                   </h3>
                                   <div className="space-y-3">
-                                    <ProgressBar label="Zuccheri" value={Number(category.sugarsMax)} min={0} max={100} />
-                                    <ProgressBar label="Grassi" value={Number(category.fatsMax)} min={0} max={100} />
-                                    <ProgressBar label="SLNG" value={Number(category.msnfMax)} min={0} max={100} />
-                                    <ProgressBar
-                                        label="Altri Solidi"
-                                        value={Number(category.otherSolidsMax)}
-                                        min={0}
-                                        max={100}
-                                    />
+                                    <ProgressBar label="Zuccheri" value={category.sugarsMax} min={0} max={100} />
+                                    <ProgressBar label="Grassi" value={category.fatsMax} min={0} max={100} />
+                                    <ProgressBar label="SLNG" value={category.msnfMax} min={0} max={100} />
+                                    <ProgressBar label="Altri Solidi" value={category.otherSolidsMax} min={0} max={100} />
                                   </div>
                                 </div>
 
@@ -223,14 +272,9 @@ export default async function CategoriesPage() {
                                     Proprietà Tecniche
                                   </h3>
                                   <div className="space-y-3">
-                                    <ProgressBar
-                                        label="Solidi Totali"
-                                        value={Number(category.totalSolidsMax)}
-                                        min={0}
-                                        max={100}
-                                    />
-                                    <ProgressBar label="POD" value={Number(category.podMax)} min={0} max={100} />
-                                    <ProgressBar label="PAC" value={Number(category.pacMax)} min={0} max={100} />
+                                    <ProgressBar label="Solidi Totali" value={category.totalSolidsMax} min={0} max={100} />
+                                    <ProgressBar label="POD" value={category.podMax} min={0} max={100} />
+                                    <ProgressBar label="PAC" value={category.pacMax} min={0} max={100} />
                                   </div>
                                 </div>
 
@@ -240,15 +284,10 @@ export default async function CategoriesPage() {
                                     Additivi
                                   </h3>
                                   <div className="space-y-3">
-                                    <ProgressBar label="Frutta" value={Number(category.fruitMax)} min={0} max={100} />
-                                    <ProgressBar label="Alcol" value={Number(category.alcoholMax)} min={0} max={100} />
-                                    <ProgressBar label="Overrun" value={Number(category.overrunMax)} min={0} max={100} />
-                                    <ProgressBar
-                                        label="Alimenti Tritati"
-                                        value={Number(category.groundFoodsMax)}
-                                        min={0}
-                                        max={100}
-                                    />
+                                    <ProgressBar label="Frutta" value={category.fruitMax} min={0} max={100} />
+                                    <ProgressBar label="Alcol" value={category.alcoholMax} min={0} max={100} />
+                                    <ProgressBar label="Overrun" value={category.overrunMax} min={0} max={100} />
+                                    <ProgressBar label="Alimenti Tritati" value={category.groundFoodsMax} min={0} max={100} />
                                   </div>
                                 </div>
                               </div>
