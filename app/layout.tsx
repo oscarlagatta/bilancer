@@ -44,7 +44,9 @@ export default function RootLayout({
                 <Image
                   src="/logo-ag.png"
                   alt="Gelato Perfetto logo"
-                  className="h-16"
+                  width={64}
+                  height={64}
+
                 />
                 <span className="sr-only">Gelato Perfetto</span>
               </Link>
