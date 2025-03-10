@@ -13,6 +13,8 @@ export default async function CategoriesPage() {
 
   // Function to get a color based on category id (deterministic)
   const getCategoryColor = (id: number, name: string) => {
+
+    console.log(name);
     // Use a set of predefined gradients
     const gradients = [
       "bg-gradient-to-r from-blue-500 to-purple-500",

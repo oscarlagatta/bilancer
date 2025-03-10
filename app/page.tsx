@@ -14,7 +14,7 @@ export default function Home() {
         alt="cover"
       />
       <div className="relative z-10 text-center flex flex-col gap-4 items-center">
-        <img src="./logo-big.png" alt="logo" className="w-[600px]" />
+        <Image src="./logo-big.png" alt="logo" className="w-[600px]" />
         {/* <h1 className="text-5xl font-bold flex gap-1 items-center justify-center">
           <IceCreamCone className="text-lime-500" size={60} />
           
@@ -23,7 +23,7 @@ export default function Home() {
           🍨 Benvenuto nel tuo assistente personale di ricette gelato!
         </p>
         <p className="text-2xl">
-          Immagina il tuo gelato. Crealo e vivi un'esperienza tutta italiana ✨
+          Immagina il tuo gelato. Crealo e vivi un&apos;esperienza tutta italiana ✨
         </p>
         <SignedIn>
           <Button asChild size="lg">
@@ -33,10 +33,10 @@ export default function Home() {
         <SignedOut>
           <div className="flex gap-2 items-center justify-center">
             <Button asChild size="lg" className="bg-lime-600 hover:bg-lime-700">
-              <SignInButton />
+              <SignInButton mode="modal" />
             </Button>
             <Button asChild size="lg">
-              <SignUpButton />
+              <SignUpButton mode="modal"/>
             </Button>
           </div>
         </SignedOut>

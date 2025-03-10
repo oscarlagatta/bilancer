@@ -11,10 +11,18 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {Badge, PencilIcon} from "lucide-react";
 import {format} from "date-fns";
-
+type Ricetta = {
+    id: number,
+    description: string,
+    transactionDate: Date,
+    transactionType: string,
+    category: string,
+    amount: number
+}
 export default function RecipePage() {
 
-    const ricette: any[] = [];
+    const ricette: Ricetta[] = [];
+
     return (
         <div className='max-w-screen-xl mx-auto py-10'>
             <Breadcrumb>

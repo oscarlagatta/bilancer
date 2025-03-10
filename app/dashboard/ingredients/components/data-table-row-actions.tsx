@@ -12,10 +12,10 @@ interface DataTableRowActionsProps<TData> {
 }
 
 export function DataTableRowActions<TData>({
-                                               row,
+                                               row: _,
                                            }: DataTableRowActionsProps<TData>) {
     // const task = taskSchema.parse(row.original)
-
+    console.log(_);
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
@@ -40,7 +41,7 @@ export default function RootLayout({
                 href="/"
                 className="font-bold text-2xl flex gap-1 items-center"
               >
-                <img
+                <Image
                   src="/logo-ag.png"
                   alt="Gelato Perfetto logo"
                   className="h-16"
@@ -56,14 +57,14 @@ export default function RootLayout({
                       variant="ghost"
                       className="text-white hover:text-primary hover:bg-white"
                     >
-                      <SignInButton />
+                      <SignInButton mode="modal"/>
                     </Button>
                     <Button
                       asChild
                       variant="outline"
                       className="text-white hover:text-primary hover:bg-white"
                     >
-                      <SignUpButton />
+                      <SignUpButton mode="modal"/>
                     </Button>
                   </div>
                 </SignedOut>

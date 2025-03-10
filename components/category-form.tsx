@@ -88,7 +88,7 @@ export default function CategoryForm({ onSubmit, defaultValues }: Props) {
                             <Separator />
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                {formFields.map((field, index) => (
+                                {formFields.map((field) => (
                                     <div key={field.title} className="space-y-4">
                                         <h3 className="font-medium text-lg">{field.title}</h3>
                                         <div className="grid grid-cols-2 gap-4">

@@ -100,7 +100,7 @@ export default function IngredientForm({ categories, onSubmit, defaultValues }: 
                             </div>
                             <CardTitle className="text-2xl">Dettagli Ingrediente</CardTitle>
                         </div>
-                        <CardDescription>Inserisci le specifiche dell'ingrediente e le informazioni nutrizionali</CardDescription>
+                        <CardDescription>Inserisci le specifiche dell&apos;ingrediente e le informazioni nutrizionali</CardDescription>
                     </CardHeader>
                     <CardContent className="pt-6">
                         <Form {...form}>
@@ -141,7 +141,7 @@ export default function IngredientForm({ categories, onSubmit, defaultValues }: 
                                                                 </SelectContent>
                                                             </Select>
                                                         </FormControl>
-                                                        <FormDescription>Scegli la categoria dell'ingrediente</FormDescription>
+                                                        <FormDescription>Scegli la categoria dell&apos;ingrediente</FormDescription>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -163,7 +163,7 @@ export default function IngredientForm({ categories, onSubmit, defaultValues }: 
                                                                 disabled={isSubmitting}
                                                             />
                                                         </FormControl>
-                                                        <FormDescription>Fornisci una descrizione chiara dell'ingrediente</FormDescription>
+                                                        <FormDescription>Fornisci una descrizione chiara dell&apos;ingrediente</FormDescription>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}

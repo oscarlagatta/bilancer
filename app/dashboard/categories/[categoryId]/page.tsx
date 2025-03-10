@@ -6,9 +6,9 @@ import type { IceCreamCategory } from "@/types/icecream-category"
 export default async function ModificaCategoriePage({
                                                         params,
                                                     }: {
-    params: { categoryId: string }
+    params: Promise<{ categoryId: string }>
 }) {
-    const categoryId = Number(params.categoryId)
+    const categoryId = Number(await params);
     const categoryData = await getCategory(categoryId)
 
     if (!categoryData) {

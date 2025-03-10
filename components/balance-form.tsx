@@ -1,6 +1,6 @@
 "use client";
 
-import { Weight } from "lucide-react";
+
 import { z } from "zod";
 import {
   Form,
@@ -30,7 +30,7 @@ export default function BalanceForm() {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: z.infer<typeof balanceSchema>) => {
     console.log(data);
   };
 
